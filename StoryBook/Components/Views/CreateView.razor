@@ -1,0 +1,80 @@
+﻿@rendermode InteractiveServer
+@using StoryBook.Components.Controllers
+@using StoryBook.Scripts
+@inject NavigationManager Navigation
+
+@{
+    List<StoryParameterData> parameterData = StoryParameters.ParameterData;
+    bool isFirstMainLineStyle = true;
+
+    // Story parameters (sections)
+    foreach (StoryParameterData data in parameterData)
+    {
+        string sectionName = data.sectionName;
+        int sectionId = data.sectionId;
+        bool isMultiSelection = data.isMultiSelection;
+        List<string> sectionParameters = data.parameters;
+
+        string mainLineClass = "stack-mainline-1";
+
+        if (!isFirstMainLineStyle)
+        {
+            mainLineClass = "stack-mainline-2";
+        }
+
+        isFirstMainLineStyle = !isFirstMainLineStyle;
+
+        <div class="@mainLineClass">
+            <div class="flex-center stack-child-title">
+                @sectionName
+            </div>
+            <div class="flex-center-vertical stack-child-parameters">
+                @{
+                    // We have multi-select parameters. Create toggle buttons.
+                    if (isMultiSelection)
+                    {
+                        <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
+                            IsReverse="false">
+                            @{
+                                for (int paramIndex = 0; paramIndex < sectionParameters.Count; paramIndex++)
+                                {
+                                    string paramName = sectionParameters[paramIndex];
+
+                                    <StackItem>
+                                        <div class="stack-item-demo">
+                                            <StoryParameterToggle Class="stack-button" SectionId=@sectionId ParamName=@paramName />
+                                        </div>
+                                    </StackItem>
+                                }
+                            }
+                        </Stack>
+                    }
+                    // We don't have multi-select parameters. Create a radio list.
+                    else
+                    {
+                        <StoryParameterRadioList SectionId=@sectionId />
+                    }
+                }
+            </div>
+        </div>
+    }
+}
+
+<div class="flex-center-vertical stack-line-confirm">
+    <Button class="stack-button stack-button-confirm" Color="Color.Success" @onclick="OnCreate">CREATE</Button>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Initialize available story parameters.
+        StoryParameters.Initialize();
+    }
+
+    private void OnCreate()
+    {
+        Navigation.NavigateTo("/generate");
+    }
+}

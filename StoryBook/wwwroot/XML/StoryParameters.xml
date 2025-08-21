@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<StoryParameters>
+    <Section name="THEME" isMultiSelection="false" id="1">
+        <Parameter>Adventure</Parameter>
+        <Parameter>Comedy</Parameter>
+        <Parameter>Fantasy</Parameter>
+        <Parameter>Mystery</Parameter>
+    </Section>
+    <Section name="LOCATION" isMultiSelection="false" id="2">
+        <Parameter>City</Parameter>
+        <Parameter>Town</Parameter>
+        <Parameter>Forest</Parameter>
+        <Parameter>Desert</Parameter>
+        <Parameter>Beach</Parameter>
+        <Parameter>Mountain</Parameter>
+        <Parameter>Volcano</Parameter>
+        <Parameter>Island</Parameter>
+        <Parameter>River</Parameter>
+    </Section>
+    <Section name="ANIMALS" isMultiSelection="true" id="3">
+        <Parameter>Cat</Parameter>
+        <Parameter>Dog</Parameter>
+        <Parameter>Rabbit</Parameter>
+        <Parameter>Turtle</Parameter>
+        <Parameter>Snake</Parameter>
+        <Parameter>Monkey</Parameter>
+        <Parameter>Gorilla</Parameter>
+        <Parameter>Eagle</Parameter>
+        <Parameter>Lion</Parameter>
+    </Section>
+</StoryParameters>

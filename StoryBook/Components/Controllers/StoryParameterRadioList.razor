@@ -1,0 +1,52 @@
+﻿@rendermode InteractiveServer
+@using StoryBook.Scripts
+
+<RadioList IsButton="true" TValue="string" Items="@itemValues" OnSelectedChanged="@OnSelectedChanged" />
+
+@code {
+    [Parameter]
+    public int SectionId { get; set; } = 0;
+
+    private List<SelectedItem>? itemValues;
+    private List<string>? parameters;
+
+    private enum State
+    {
+        Normal,
+        Selected
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        itemValues = new List<SelectedItem>();
+        parameters = StoryParameters.GetParameters(SectionId);
+
+        if (parameters != null)
+        {
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                SelectedItem selectedItem = new(i.ToString(), parameters[i]);
+                itemValues.Add(selectedItem);
+            }
+
+            CreateStoryData.ToggleParameter(SectionId, parameters[0], false, true);
+        }
+    }
+
+    private Task OnSelectedChanged(IEnumerable<SelectedItem> values, string val)
+    {
+        if (parameters != null)
+        {
+            int paramIndex = -1;
+
+            if (int.TryParse(val, out paramIndex))
+            {
+                CreateStoryData.ToggleParameter(SectionId, parameters[paramIndex], false, true);
+            }
+        }
+
+        return Task.CompletedTask;
+    }
+}

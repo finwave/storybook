@@ -1,0 +1,50 @@
+﻿@rendermode InteractiveServer
+@using StoryBook.Scripts
+
+<Button class="@Class" Color="@buttonColor" @onclick="OnButtonClick">@ParamName</Button>
+
+@code {
+    [Parameter]
+    public string Class { get; set; } = "";
+    [Parameter]
+    public int SectionId { get; set; } = 0;
+    [Parameter]
+    public string ParamName { get; set; } = "";
+
+    private enum State
+    {
+        Normal,
+        Selected
+    }
+
+    private State buttonState = State.Normal;
+    private Color buttonColor = Color.None;
+
+    public bool IsSelected
+    {
+        get { return (buttonState == State.Selected); }
+    }
+
+    private void OnButtonClick()
+    {
+        SwitchState();
+
+        bool enable = (buttonState == State.Selected);
+        CreateStoryData.ToggleParameter(SectionId, ParamName, true, enable);
+    }
+
+    private void SwitchState()
+    {
+        buttonState = (buttonState == State.Normal) ? State.Selected : State.Normal;
+
+        switch (buttonState)
+        {
+            case State.Normal:
+                buttonColor = Color.None;
+                break;
+            case State.Selected:
+                buttonColor = Color.Primary;
+                break;
+        }
+    }
+}

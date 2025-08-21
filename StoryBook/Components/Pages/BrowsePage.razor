@@ -1,0 +1,14 @@
+﻿@page "/"
+@using StoryBook.Components.Layout
+@using StoryBook.Components.Views
+
+<div class="layout-demo main-layout" style="height: 100%;">
+    <Layout ShowFooter="false" SideWidth="15%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
+        <Side>
+            <SideMenuView CurrentPage=SideMenuView.Page.Browse />
+        </Side>
+        <Main>
+            <BrowseView />
+        </Main>
+    </Layout>
+</div>
