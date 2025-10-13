@@ -1,5 +1,4 @@
-﻿@using StoryBook.Scripts
-@rendermode InteractiveServer
+﻿@rendermode InteractiveServer
 @inject NavigationManager Navigation
 
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
@@ -44,12 +43,12 @@
                 {
                     <StackItem>
                         <div class="stack-item-demo">
-                            <button class="side-element button-side-disabled">BROWSE</button>
+                            <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
                         </div>
                     </StackItem>
                     <StackItem>
                         <div class="stack-item-demo">
-                            <button class="side-element button-side-selected">CREATE</button>
+                            <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
                         </div>
                     </StackItem>
                 }
@@ -80,6 +79,6 @@
     private void OnButtonCreate()
     {
         CreateStoryData.Reset();
-        Navigation.NavigateTo("/create");
+        Navigation.NavigateTo("/Create");
     }
 }

@@ -1,14 +1,14 @@
-﻿@page "/generate"
-@using StoryBook.Components.Layout
-@using StoryBook.Components.Views
+﻿@page "/Create"
 
 <div class="layout-demo main-layout" style="height: 100%;">
     <Layout ShowFooter="false" SideWidth="15%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
         <Side>
-            <SideMenuView CurrentPage=SideMenuView.Page.Generate />
+            <MySideMenu CurrentPage=MySideMenu.Page.Create />
         </Side>
         <Main>
-            <GenerateView />
+            <div class="main-body">
+                <CreateContent />
+            </div>
         </Main>
     </Layout>
 </div>

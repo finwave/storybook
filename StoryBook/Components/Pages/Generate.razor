@@ -1,0 +1,12 @@
+﻿@page "/Generate"
+
+<div class="layout-demo main-layout" style="height: 100%;">
+    <Layout ShowFooter="false" SideWidth="15%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
+        <Side>
+            <MySideMenu CurrentPage=MySideMenu.Page.Generate />
+        </Side>
+        <Main>
+            <GenerateContent />
+        </Main>
+    </Layout>
+</div>
