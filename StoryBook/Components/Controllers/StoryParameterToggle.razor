@@ -30,7 +30,7 @@
         SwitchState();
 
         bool enable = (buttonState == State.Selected);
-        CreateStoryData.ToggleParameter(SectionId, ParamName, true, enable);
+        CreateStoryData.ToggleParameter(SectionId, ParamName, isMultiSelection: true, enable);
     }
 
     private void SwitchState()

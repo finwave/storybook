@@ -31,7 +31,7 @@
                 itemValues.Add(selectedItem);
             }
 
-            CreateStoryData.ToggleParameter(SectionId, parameters[0], false, true);
+            CreateStoryData.ToggleParameter(SectionId, parameters[index: 0], isMultiSelection: false, enable: true);
         }
     }
 
@@ -43,7 +43,7 @@
 
             if (int.TryParse(val, out paramIndex))
             {
-                CreateStoryData.ToggleParameter(SectionId, parameters[paramIndex], false, true);
+                CreateStoryData.ToggleParameter(SectionId, parameters[paramIndex], isMultiSelection: false, enable: true);
             }
         }
 
