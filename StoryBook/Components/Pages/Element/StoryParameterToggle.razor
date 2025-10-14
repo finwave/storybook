@@ -1,7 +1,6 @@
 ﻿@rendermode InteractiveServer
-@using StoryBook.Scripts
 
-<Button class="@Class" Color="@buttonColor" @onclick="OnButtonClick">@ParamName</Button>
+<Button class="@Class" Color="@toggleColor" @onclick="OnButtonClick">@ParamName</Button>
 
 @code {
     [Parameter]
@@ -11,33 +10,33 @@
     [Parameter]
     public string ParamName { get; set; } = "";
 
-    private EToggleState buttonState = EToggleState.Normal;
-    private Color buttonColor = Color.None;
+    private EToggleState toggleState = EToggleState.Normal;
+    private Color toggleColor = Color.None;
 
     public bool IsSelected
     {
-        get { return (buttonState == EToggleState.Selected); }
+        get { return (toggleState == EToggleState.Selected); }
     }
 
     private void OnButtonClick()
     {
         SwitchState();
 
-        bool enable = (buttonState == EToggleState.Selected);
+        bool enable = (toggleState == EToggleState.Selected);
         CreateStoryData.ToggleParameter(SectionId, ParamName, isMultiSelection: true, enable);
     }
 
     private void SwitchState()
     {
-        buttonState = (buttonState == EToggleState.Normal) ? EToggleState.Selected : EToggleState.Normal;
+        toggleState = (toggleState == EToggleState.Normal) ? EToggleState.Selected : EToggleState.Normal;
 
-        switch (buttonState)
+        switch (toggleState)
         {
             case EToggleState.Normal:
-                buttonColor = Color.None;
+                toggleColor = Color.None;
                 break;
             case EToggleState.Selected:
-                buttonColor = Color.Primary;
+                toggleColor = Color.Primary;
                 break;
         }
     }

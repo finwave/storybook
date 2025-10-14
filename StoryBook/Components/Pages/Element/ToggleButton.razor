@@ -1,6 +1,6 @@
 @rendermode InteractiveServer
 
-<Button class="@Class" Color="@buttonColor" @onclick="OnButtonClick">@Text</Button>
+<Button class="@Class" Color="@toggleColor" @onclick="OnButtonClick">@Text</Button>
 
 @code {
     [Parameter]
@@ -8,12 +8,12 @@
     [Parameter]
     public string Text { get; set; } = "";
 
-    private EToggleState buttonState = EToggleState.Normal;
-    private Color buttonColor = Color.Light;
+    private EToggleState toggleState = EToggleState.Normal;
+    private Color toggleColor = Color.Light;
 
     public bool IsSelected
     {
-        get { return (buttonState == EToggleState.Selected); }
+        get { return (toggleState == EToggleState.Selected); }
     }
 
     protected override void OnInitialized()
@@ -27,16 +27,16 @@
 
     private void SwitchState()
     {
-        switch (buttonState)
+        switch (toggleState)
         {
             case EToggleState.Normal:
-                buttonState = EToggleState.Selected;
-                buttonColor = Color.Active;
+                toggleState = EToggleState.Selected;
+                toggleColor = Color.Active;
                 break;
 
             case EToggleState.Selected:
-                buttonState = EToggleState.Normal;
-                buttonColor = Color.Light;
+                toggleState = EToggleState.Normal;
+                toggleColor = Color.Light;
                 break;
         }
     }
