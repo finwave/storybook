@@ -23,7 +23,7 @@
         SwitchState();
 
         bool enable = (toggleState == EToggleState.Selected);
-        CreateStoryData.ToggleParameter(SectionId, ParamName, isMultiSelection: true, enable);
+        StoryParameterManager.ToggleSelectedParameter(SectionId, ParamName, isMultiSelection: true, enable);
     }
 
     private void SwitchState()

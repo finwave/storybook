@@ -14,7 +14,7 @@
         base.OnInitialized();
 
         itemValues = new List<SelectedItem>();
-        parameters = StoryParameters.GetParameters(SectionId);
+        parameters = StoryParameterManager.GetAvailableParameters(SectionId);
 
         if (parameters != null)
         {
@@ -24,7 +24,7 @@
                 itemValues.Add(selectedItem);
             }
 
-            CreateStoryData.ToggleParameter(SectionId, parameters[index: 0], isMultiSelection: false, enable: true);
+            StoryParameterManager.ToggleSelectedParameter(SectionId, parameters[index: 0], isMultiSelection: false, enable: true);
         }
     }
 
@@ -36,7 +36,7 @@
 
             if (int.TryParse(val, out paramIndex))
             {
-                CreateStoryData.ToggleParameter(SectionId, parameters[paramIndex], isMultiSelection: false, enable: true);
+                StoryParameterManager.ToggleSelectedParameter(SectionId, parameters[paramIndex], isMultiSelection: false, enable: true);
             }
         }
 

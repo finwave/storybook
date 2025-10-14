@@ -2,16 +2,21 @@
 @inject NavigationManager Navigation
 
 @{
-    List<StoryParameterData> parameterData = StoryParameters.ParameterData;
+    List<StoryParameterData> parameterData = StoryParameterManager.GetAvailableParameters();
     bool isFirstMainLineStyle = true;
 
     // Story parameters (sections)
     foreach (StoryParameterData data in parameterData)
     {
-        string sectionName = data.sectionName;
-        int sectionId = data.sectionId;
-        bool isMultiSelection = data.isMultiSelection;
-        List<string> sectionParameters = data.parameters;
+        if ((data == null) || (data.SectionName == null) || (data.Parameters == null))
+        {
+            continue;
+        }
+
+        string sectionName = data.SectionName;
+        int sectionId = data.SectionId;
+        bool isMultiSelection = data.IsMultiSelection;
+        List<string> sectionParameters = data.Parameters;
 
         string mainLineClass = "stack-mainline-1";
 
@@ -67,8 +72,8 @@
     {
         base.OnInitialized();
 
-        // Initialize available story parameters.
-        StoryParameters.Initialize();
+        // Create available story parameters.
+        StoryParameterManager.CreateAvailableParameters();
     }
 
     private void OnCreate()
