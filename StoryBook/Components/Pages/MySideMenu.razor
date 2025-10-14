@@ -13,7 +13,7 @@
                 </div>
             </StackItem>
             @{
-                if (CurrentPage == Page.Browse)
+                if (CurrentPage == EPage.Browse)
                 {
                     <StackItem>
                         <div class="stack-item-demo">
@@ -26,7 +26,7 @@
                         </div>
                     </StackItem>
                 }
-                else if (CurrentPage == Page.Create)
+                else if (CurrentPage == EPage.Create)
                 {
                     <StackItem>
                         <div class="stack-item-demo">
@@ -39,7 +39,7 @@
                         </div>
                     </StackItem>
                 }
-                else if (CurrentPage == Page.Generate)
+                else if (CurrentPage == EPage.Generate)
                 {
                     <StackItem>
                         <div class="stack-item-demo">
@@ -58,15 +58,8 @@
 </div>
 
 @code {
-    public enum Page
-    {
-        Browse,
-        Create,
-        Generate
-    }
-
     [Parameter]
-    public Page CurrentPage { get; set; } = Page.Browse;
+    public EPage CurrentPage { get; set; } = EPage.Browse;
 
     private const string styleSelected = "button-side-selected";
     private const string styleNormal = "button-side-normal";

@@ -8,18 +8,12 @@
     [Parameter]
     public string Text { get; set; } = "";
 
-    private enum State
-    {
-        Normal,
-        Selected
-    }
-
-    private State buttonState = State.Normal;
+    private EToggleState buttonState = EToggleState.Normal;
     private Color buttonColor = Color.Light;
 
     public bool IsSelected
     {
-        get { return (buttonState == State.Selected); }
+        get { return (buttonState == EToggleState.Selected); }
     }
 
     protected override void OnInitialized()
@@ -35,13 +29,13 @@
     {
         switch (buttonState)
         {
-            case State.Normal:
-                buttonState = State.Selected;
+            case EToggleState.Normal:
+                buttonState = EToggleState.Selected;
                 buttonColor = Color.Active;
                 break;
 
-            case State.Selected:
-                buttonState = State.Normal;
+            case EToggleState.Selected:
+                buttonState = EToggleState.Normal;
                 buttonColor = Color.Light;
                 break;
         }

@@ -11,38 +11,32 @@
     [Parameter]
     public string ParamName { get; set; } = "";
 
-    private enum State
-    {
-        Normal,
-        Selected
-    }
-
-    private State buttonState = State.Normal;
+    private EToggleState buttonState = EToggleState.Normal;
     private Color buttonColor = Color.None;
 
     public bool IsSelected
     {
-        get { return (buttonState == State.Selected); }
+        get { return (buttonState == EToggleState.Selected); }
     }
 
     private void OnButtonClick()
     {
         SwitchState();
 
-        bool enable = (buttonState == State.Selected);
+        bool enable = (buttonState == EToggleState.Selected);
         CreateStoryData.ToggleParameter(SectionId, ParamName, isMultiSelection: true, enable);
     }
 
     private void SwitchState()
     {
-        buttonState = (buttonState == State.Normal) ? State.Selected : State.Normal;
+        buttonState = (buttonState == EToggleState.Normal) ? EToggleState.Selected : EToggleState.Normal;
 
         switch (buttonState)
         {
-            case State.Normal:
+            case EToggleState.Normal:
                 buttonColor = Color.None;
                 break;
-            case State.Selected:
+            case EToggleState.Selected:
                 buttonColor = Color.Primary;
                 break;
         }
