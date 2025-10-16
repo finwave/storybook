@@ -1,7 +1,4 @@
-#pragma warning disable CS8602
 namespace StoryBook.Scripts;
-
-using System.Xml;
 
 public class StoryParameterManager
 {
@@ -24,28 +21,17 @@ public class StoryParameterManager
             rootpath = rootpath.Replace("bin\\Debug\\net9.0\\", "");
         }
 
-        //Load the XML file in XmlDocument.
-        XmlDocument doc = new XmlDocument();
-        doc.Load(string.Concat(rootpath, "/XML/StoryParameters.xml"));
+        string jsonFilePath = string.Concat(rootpath, "\\json\\available_parameters.json");
+        string jsonString = File.ReadAllText(jsonFilePath);
+        StoryParameterData[]? jsonOutputArray = JsonUtils.FromJson<StoryParameterData>(jsonString);
 
-        //Loop through the selected Nodes.
-        foreach (XmlNode sectionNode in doc.SelectNodes("/StoryParameters/Section"))
+        if (jsonOutputArray != null)
         {
-            StoryParameterData data = new StoryParameterData();
-
-            data.SectionName = sectionNode.Attributes["name"].Value;
-            data.SectionId = int.Parse(sectionNode.Attributes["id"].Value);
-            data.IsMultiSelection = bool.Parse(sectionNode.Attributes["isMultiSelection"].Value);
-
-            List<string> parameters = [];
-
-            foreach (XmlNode parameterNode in sectionNode.ChildNodes)
+            for (int i = 0; i < jsonOutputArray.Length; i++)
             {
-                parameters.Add(parameterNode.InnerText);
+                StoryParameterData parameterData = jsonOutputArray[i];
+                s_ListAvailableParameters.Add(parameterData);
             }
-
-            data.Parameters = parameters;
-            s_ListAvailableParameters.Add(data);
         }
     }
 
