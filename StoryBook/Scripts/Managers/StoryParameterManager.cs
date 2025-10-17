@@ -2,11 +2,20 @@ namespace StoryBook.Scripts;
 
 public class StoryParameterManager
 {
+    private static List<StoryParameterData> s_ListAvailableParameters = [];
+    private static List<StoryParameterData> s_ListSelectedParameters = [];
+
+    public static void Initialize()
+    {
+        // Create available story parameters.
+        CreateAvailableParameters();
+        // Reset selected story parameters.
+        ResetSelectedParameters();
+    }
+
     #region AVAILABLE PARAMETERS
 
-    private static List<StoryParameterData> s_ListAvailableParameters = [];
-
-    public static void CreateAvailableParameters()
+    private static void CreateAvailableParameters()
     {
         if (s_ListAvailableParameters.Count > 0)
         {
@@ -21,6 +30,7 @@ public class StoryParameterManager
             rootpath = rootpath.Replace("bin\\Debug\\net9.0\\", "");
         }
 
+        // get json file path and read the contents
         string jsonFilePath = string.Concat(rootpath, "\\json\\available_parameters.json");
         string jsonString = File.ReadAllText(jsonFilePath);
         StoryParameterData[]? jsonOutputArray = JsonUtils.FromJson<StoryParameterData>(jsonString);
@@ -40,19 +50,6 @@ public class StoryParameterManager
         return s_ListAvailableParameters;
     }
 
-    public static List<string>? GetAvailableParameters(int sectionId)
-    {
-        foreach (StoryParameterData data in s_ListAvailableParameters)
-        {
-            if (data.SectionId == sectionId)
-            {
-                return data.Parameters;
-            }
-        }
-
-        return null;
-    }
-
     private static string? GetSectionName(int sectionId)
     {
         foreach (StoryParameterData data in s_ListAvailableParameters)
@@ -60,6 +57,19 @@ public class StoryParameterManager
             if (data.SectionId == sectionId)
             {
                 return data.SectionName;
+            }
+        }
+
+        return null;
+    }
+
+    private static string? GetParameterName(int sectionId, int paramIndex)
+    {
+        foreach (StoryParameterData data in s_ListAvailableParameters)
+        {
+            if ((data.SectionId == sectionId) && (data.Parameters != null))
+            {
+                return data.Parameters[paramIndex];
             }
         }
 
@@ -83,16 +93,57 @@ public class StoryParameterManager
 
     #region SELECTED PARAMETERS
 
-    private static List<StoryParameterData> s_ListSelectedParameters = [];
-
     public static List<StoryParameterData> GetSelectedParameters()
     {
         return s_ListSelectedParameters;
     }
 
-    public static void ClearSelectedParameters()
+    private static void ResetSelectedParameters()
     {
         s_ListSelectedParameters.Clear();
+
+        // select first parameter of each section
+        for (int i = 0; i < s_ListAvailableParameters.Count; i++)
+        {
+            int sectionId = i + 1;
+            SelectFirstParameter(sectionId);
+        }
+    }
+
+    private static void SelectFirstParameter(int sectionId)
+    {
+        string? firstParamName = GetParameterName(sectionId, 0);
+
+        if (firstParamName != null)
+        {
+            ToggleSelectedParameter(sectionId, firstParamName, false, true);
+        }
+    }
+
+    public static bool IsSelectedParameter(int sectionId, string paramName)
+    {
+        foreach (StoryParameterData data in s_ListSelectedParameters)
+        {
+            if ((data.SectionId == sectionId) && (data.Parameters != null))
+            {
+                return data.Parameters.Contains(paramName);
+            }
+        }
+
+        return false;
+    }
+
+    public static int GetSelectedParametersAmount(int sectionId)
+    {
+        foreach (StoryParameterData data in s_ListSelectedParameters)
+        {
+            if ((data.SectionId == sectionId) && (data.Parameters != null))
+            {
+                return data.Parameters.Count;
+            }
+        }
+
+        return 0;
     }
 
     public static void ToggleSelectedParameter(int sectionId, string paramName, bool isMultiSelection, bool enable)
@@ -101,34 +152,31 @@ public class StoryParameterManager
 
         for (int i = 0; i < s_ListSelectedParameters.Count; i++)
         {
-            if (s_ListSelectedParameters[i].SectionId == sectionId)
+            StoryParameterData data = s_ListSelectedParameters[i];
+
+            if ((data.SectionId == sectionId) && (data.Parameters != null))
             {
-                StoryParameterData data = s_ListSelectedParameters[i];
+                List<string> parameters = data.Parameters;
 
-                if ((data != null) && (data.Parameters != null))
+                if (enable)
                 {
-                    List<string> parameters = data.Parameters;
-
-                    if (enable)
+                    if (!isMultiSelection)
                     {
-                        if (!isMultiSelection)
-                        {
-                            parameters.Clear();
-                        }
-
-                        if (!parameters.Contains(paramName))
-                        {
-                            parameters.Add(paramName);
-                        }
-                    }
-                    else
-                    {
-                        parameters.Remove(paramName);
+                        parameters.Clear();
                     }
 
-                    data.Parameters = parameters;
-                    s_ListSelectedParameters[i] = data;
+                    if (!parameters.Contains(paramName))
+                    {
+                        parameters.Add(paramName);
+                    }
                 }
+                else
+                {
+                    parameters.Remove(paramName);
+                }
+
+                data.Parameters = parameters;
+                s_ListSelectedParameters[i] = data;
 
                 break;
             }

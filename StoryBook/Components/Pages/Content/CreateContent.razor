@@ -2,63 +2,28 @@
 @inject NavigationManager Navigation
 
 @{
-    List<StoryParameterData> parameterData = StoryParameterManager.GetAvailableParameters();
-    bool isFirstMainLineStyle = true;
+    List<StoryParameterData> availableParameters = StoryParameterManager.GetAvailableParameters();
+    bool isFirstSectionStyle = true;
 
     // Story parameters (sections)
-    foreach (StoryParameterData data in parameterData)
+    foreach (StoryParameterData parameterSection in availableParameters)
     {
-        if ((data == null) || (data.SectionName == null) || (data.Parameters == null))
+        if ((parameterSection.SectionName == null) || (parameterSection.Parameters == null))
         {
             continue;
         }
 
-        string sectionName = data.SectionName;
-        int sectionId = data.SectionId;
-        bool isMultiSelection = data.IsMultiSelection;
-        List<string> sectionParameters = data.Parameters;
+        string sectionName = parameterSection.SectionName;
+        int sectionId = parameterSection.SectionId;
+        bool isMultiSelection = parameterSection.IsMultiSelection;
+        List<string> parameterNames = parameterSection.Parameters;
 
-        string mainLineClass = "stack-mainline-1";
+        string sectionStyle = isFirstSectionStyle ? "stack-mainline-1" : "stack-mainline-2";
+        isFirstSectionStyle = !isFirstSectionStyle;
 
-        if (!isFirstMainLineStyle)
-        {
-            mainLineClass = "stack-mainline-2";
-        }
-
-        isFirstMainLineStyle = !isFirstMainLineStyle;
-
-        <div class="@mainLineClass">
-            <div class="flex-center stack-child-title">
-                @sectionName
-            </div>
-            <div class="flex-center-vertical stack-child-parameters">
-                @{
-                    // We have multi-select parameters. Create toggle buttons.
-                    if (isMultiSelection)
-                    {
-                        <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
-                            IsReverse="false">
-                            @{
-                                for (int paramIndex = 0; paramIndex < sectionParameters.Count; paramIndex++)
-                                {
-                                    string paramName = sectionParameters[paramIndex];
-
-                                    <StackItem>
-                                        <div class="stack-item-demo">
-                                            <StoryParameterToggle Class="stack-button" SectionId=@sectionId ParamName=@paramName />
-                                        </div>
-                                    </StackItem>
-                                }
-                            }
-                        </Stack>
-                    }
-                    // We don't have multi-select parameters. Create a radio list.
-                    else
-                    {
-                        <StoryParameterRadioList SectionId=@sectionId />
-                    }
-                }
-            </div>
+        <div class="@sectionStyle">
+            <div class="flex-center stack-child-title">@sectionName</div>
+            <StoryParameterSection SectionId=@sectionId ParameterNames=@parameterNames IsMultiSelection=@isMultiSelection />
         </div>
     }
 }
@@ -68,14 +33,6 @@
 </div>
 
 @code {
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        // Create available story parameters.
-        StoryParameterManager.CreateAvailableParameters();
-    }
-
     private void OnCreate()
     {
         Navigation.NavigateTo("/Generate");

@@ -9,28 +9,67 @@
     public int SectionId { get; set; } = 0;
     [Parameter]
     public string ParamName { get; set; } = "";
+    [Parameter]
+    public bool IsMultiSelection { get; set; } = false;
+    [Parameter]
+    public EventCallback onDoneButtonClicked { get; set; }
 
-    private EToggleState toggleState = EToggleState.Normal;
+    private EToggleState currentToggleState = EToggleState.Normal;
     private Color toggleColor = Color.None;
 
-    public bool IsSelected
+    protected override void OnParametersSet()
     {
-        get { return (toggleState == EToggleState.Selected); }
+        base.OnParametersSet();
+
+        bool isSelected = StoryParameterManager.IsSelectedParameter(SectionId, ParamName);
+        EToggleState nextState = isSelected ? EToggleState.Selected : EToggleState.Normal;
+        SwitchToggleState(nextState);
     }
 
-    private void OnButtonClick()
+    private async Task OnButtonClick()
     {
-        SwitchState();
+        if (IsMultiSelection)
+        {
+            int currentSelectedAmount = StoryParameterManager.GetSelectedParametersAmount(SectionId);
 
-        bool enable = (toggleState == EToggleState.Selected);
-        StoryParameterManager.ToggleSelectedParameter(SectionId, ParamName, isMultiSelection: true, enable);
+            if (IsSelected() && (currentSelectedAmount == 1))
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (IsSelected())
+            {
+                return;
+            }
+        }
+
+
+        SwapToggleState();
+        StoryParameterManager.ToggleSelectedParameter(SectionId, ParamName, IsMultiSelection, IsSelected());
+
+        if (!IsMultiSelection)
+        {
+            await onDoneButtonClicked.InvokeAsync();
+        }
     }
 
-    private void SwitchState()
+    private void SwapToggleState()
     {
-        toggleState = (toggleState == EToggleState.Normal) ? EToggleState.Selected : EToggleState.Normal;
+        currentToggleState = (currentToggleState == EToggleState.Normal) ? EToggleState.Selected : EToggleState.Normal;
+        UpdateColor();
+    }
 
-        switch (toggleState)
+    public void SwitchToggleState(EToggleState nextState)
+    {
+        currentToggleState = nextState;
+        UpdateColor();
+    }
+
+    private void UpdateColor()
+    {
+        switch (currentToggleState)
         {
             case EToggleState.Normal:
                 toggleColor = Color.None;
@@ -39,5 +78,10 @@
                 toggleColor = Color.Primary;
                 break;
         }
+    }
+
+    private bool IsSelected()
+    {
+        return (currentToggleState == EToggleState.Selected);
     }
 }
