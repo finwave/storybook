@@ -4,47 +4,21 @@ public class StoryParameterManager
 {
     private static List<StoryParameterData> s_ListAvailableParameters = [];
     private static List<StoryParameterData> s_ListSelectedParameters = [];
-    private static EDebugEnvironment s_DebugEnvironment;
 
     public static void Initialize()
     {
-        SetDebugEnvironment();
         // Create available story parameters.
         CreateAvailableParameters();
         // Reset selected story parameters.
         ResetSelectedParameters();
     }
 
-    private static void SetDebugEnvironment()
-    {
-        s_DebugEnvironment = EDebugEnvironment.None;
-        string rootpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot");
-
-        // currently in Windows debug environment
-        if (rootpath.Contains(":\\"))
-        {
-            s_DebugEnvironment = EDebugEnvironment.Windows;
-        }
-        // currently in Mac debug environment
-        else if (rootpath.Contains("/Users/"))
-        {
-            s_DebugEnvironment = EDebugEnvironment.Mac;
-        }
-    }
-
     private static string GetRootPath()
     {
         string rootpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot");
 
-        // currently in Windows debug environment
-        if (s_DebugEnvironment == EDebugEnvironment.Windows)
-        {
-            rootpath = rootpath.Replace("bin\\Debug\\net9.0\\", "");
-        }
-        else if (s_DebugEnvironment == EDebugEnvironment.Mac)
-        {
-            rootpath = rootpath.Replace("bin/Debug/net9.0/", "");
-        }
+        rootpath = rootpath.Replace("bin\\Debug\\net9.0\\", "");
+        rootpath = rootpath.Replace("bin/Debug/net9.0/", "");
 
         return rootpath;
     }
