@@ -1,3 +1,35 @@
+@font-face {
+	font-family: "roboto-regular";
+	src: url("fonts/Roboto-Regular.woff2") format("woff2"),
+		url("fonts/Roboto-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "roboto-medium";
+	src: url("fonts/Roboto-Medium.woff2") format("woff2"),
+		url("fonts/Roboto-Medium.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "roboto-bold";
+	src: url("fonts/Roboto-Bold.woff2") format("woff2"),
+		url("fonts/Roboto-Bold.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "roboto-black";
+	src: url("fonts/Roboto-Black.woff2") format("woff2"),
+		url("fonts/Roboto-Black.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
 html,
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -108,7 +140,8 @@ h1:focus {
 
 /* PAGE */
 
-.main-layout {
+.main-layout,
+.layout-main {
 	background-color: rgb(230, 230, 230);
 }
 
@@ -135,10 +168,10 @@ h1:focus {
 }
 
 .stack-child-title {
-	color: white;
+	font-family: "roboto-bold";
+	font-size: 1rem;
 	width: 6.2rem;
-	font-size: 1.05rem;
-	font-weight: bold;
+	color: white;
 }
 
 .stack-child-parameters {
@@ -152,54 +185,24 @@ h1:focus {
 	padding: 2rem 1rem 1rem 1rem;
 }
 
-.stack-button-confirm {
-	font-weight: bold;
-}
-
 .stack-button {
 	min-width: 6.2rem;
 	margin-right: 1rem;
+}
+
+.stack-button-toggle {
+	font-family: "roboto-medium";
 	font-size: 0.9rem;
 }
 
-/* OVERRIDES */
-
-.divider {
-	background-color: black;
+.stack-button-confirm {
+	font-family: "roboto-black";
+	font-size: 1rem;
 }
 
-.stack-button,
-.btn-light {
-	font-weight: bold;
-}
-
-.btn-info,
-.btn-active {
-	font-weight: bold;
-}
-
-.btn-success {
-	background-color: #47b578;
-}
-
-.btn-success:hover {
-	background-color: #3fa46c;
-}
+/* BOOTSTRAP BLAZOR / OVERRIDES */
 
 .btn.stack-button,
 .btn.stack-button:hover {
 	color: white;
-}
-
-.radio-list.btn-group {
-	border-width: 0;
-}
-
-.radio-list.btn-group > .btn {
-	color: white;
-	min-width: 6.2rem;
-	margin-right: 1rem;
-	font-size: 0.9rem;
-	font-weight: bold;
-	font-weight: bold;
 }

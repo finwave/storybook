@@ -7,11 +7,6 @@
     <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
         <Stack IsRow="false" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="false"
             IsReverse="false">
-            <StackItem>
-                <div class="stack-item-demo">
-                    <div class="flex-center side-element title-side">STORYBOOK</div>
-                </div>
-            </StackItem>
             @{
                 if (CurrentPage == EPage.Browse)
                 {
@@ -53,6 +48,11 @@
                     </StackItem>
                 }
             }
+            <StackItem class="flex-center side-title">
+                <div class="stack-item-demo">
+                    <div>STORYBOOK</div>
+                </div>
+            </StackItem>
         </Stack>
     </div>
 </div>
