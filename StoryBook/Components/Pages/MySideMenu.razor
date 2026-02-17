@@ -4,74 +4,74 @@
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div class="side-container">
-    <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-        <Stack IsRow="false" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="false"
-            IsReverse="false">
-            @{
-                if (CurrentPage == EPage.Browse)
-                {
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <button class="side-element button-side-selected">BROWSE</button>
-                        </div>
-                    </StackItem>
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
-                        </div>
-                    </StackItem>
-                }
-                else if (CurrentPage == EPage.Create)
-                {
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
-                        </div>
-                    </StackItem>
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <button class="side-element button-side-selected">CREATE</button>
-                        </div>
-                    </StackItem>
-                }
-                else if (CurrentPage == EPage.Generate)
-                {
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
-                        </div>
-                    </StackItem>
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
-                        </div>
-                    </StackItem>
-                }
-            }
-            <StackItem class="flex-center side-title">
-                <div class="stack-item-demo">
-                    <div>STORYBOOK</div>
-                </div>
-            </StackItem>
-        </Stack>
-    </div>
+  <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <Stack IsRow="false" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="false"
+           IsReverse="false">
+      @{
+        if (CurrentPage == EPage.Browse)
+        {
+          <StackItem>
+            <div class="stack-item-demo">
+              <button class="side-element button-side-selected">BROWSE</button>
+            </div>
+          </StackItem>
+          <StackItem>
+            <div class="stack-item-demo">
+              <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
+            </div>
+          </StackItem>
+        }
+        else if (CurrentPage == EPage.Create)
+        {
+          <StackItem>
+            <div class="stack-item-demo">
+              <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
+            </div>
+          </StackItem>
+          <StackItem>
+            <div class="stack-item-demo">
+              <button class="side-element button-side-selected">CREATE</button>
+            </div>
+          </StackItem>
+        }
+        else if (CurrentPage == EPage.Generate)
+        {
+          <StackItem>
+            <div class="stack-item-demo">
+              <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
+            </div>
+          </StackItem>
+          <StackItem>
+            <div class="stack-item-demo">
+              <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
+            </div>
+          </StackItem>
+        }
+      }
+      <StackItem class="flex-center side-title">
+        <div class="stack-item-demo">
+          <div>STORYBOOK</div>
+        </div>
+      </StackItem>
+    </Stack>
+  </div>
 </div>
 
 @code {
-    [Parameter]
-    public EPage CurrentPage { get; set; } = EPage.Browse;
+  [Parameter]
+  public EPage CurrentPage { get; set; } = EPage.Browse;
 
-    private const string styleSelected = "button-side-selected";
-    private const string styleNormal = "button-side-normal";
+  private const string styleSelected = "button-side-selected";
+  private const string styleNormal = "button-side-normal";
 
-    private void OnButtonBrowse()
-    {
-        Navigation.NavigateTo("/");
-    }
+  private void OnButtonBrowse()
+  {
+    Navigation.NavigateTo("/");
+  }
 
-    private void OnButtonCreate()
-    {
-        StoryParameterManager.Initialize();
-        Navigation.NavigateTo("/Create");
-    }
+  private void OnButtonCreate()
+  {
+    StoryParameterManager.Initialize();
+    Navigation.NavigateTo("/Create");
+  }
 }

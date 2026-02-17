@@ -1,36 +1,36 @@
 @rendermode InteractiveServer
 
 <div class="flex-center-vertical stack-child-parameters">
-    @{
-        <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
-            IsReverse="false">
-            @{
-                for (int parameterIndex = 0; parameterIndex < ParameterNames.Count; parameterIndex++)
-                {
-                    string parameterName = ParameterNames[parameterIndex];
+  @{
+    <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
+           IsReverse="false">
+      @{
+        for (int parameterIndex = 0; parameterIndex < ParameterNames.Count; parameterIndex++)
+        {
+          string parameterName = ParameterNames[parameterIndex];
 
-                    <StackItem>
-                        <div class="stack-item-demo">
-                            <StoryParameterToggle Class="stack-button stack-button-toggle" SectionId=SectionId
-                                ParamName=@parameterName IsMultiSelection=IsMultiSelection onDoneButtonClicked="OnButtonClicked" />
-                        </div>
-                    </StackItem>
-                }
-            }
-        </Stack>
-    }
+          <StackItem>
+            <div class="stack-item-demo">
+              <StoryParameterToggle Class="stack-button stack-button-toggle" SectionId=SectionId                  ParamName=@parameterName
+                                    IsMultiSelection=IsMultiSelection onDoneButtonClicked="OnButtonClicked" />
+            </div>
+          </StackItem>
+        }
+      }
+    </Stack>
+  }
 </div>
 
 @code {
-    [Parameter]
-    public int SectionId { get; set; }
-    [Parameter]
-    public List<string> ParameterNames { get; set; } = [];
-    [Parameter]
-    public bool IsMultiSelection { get; set; } = false;
+  [Parameter]
+  public int SectionId { get; set; }
+  [Parameter]
+  public List<string> ParameterNames { get; set; } = [];
+  [Parameter]
+  public bool IsMultiSelection { get; set; } = false;
 
-    public void OnButtonClicked()
-    {
-        StateHasChanged();
-    }
+  public void OnButtonClicked()
+  {
+    StateHasChanged();
+  }
 }

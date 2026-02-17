@@ -1,45 +1,40 @@
 [
-  {
-    "SectionName": "THEME",
-    "SectionId": 1,
-    "IsMultiSelection": false,
-    "Parameters": [
-      "Adventure",
-      "Comedy",
-      "Fantasy",
-      "Mystery"
-    ]
-  },
-  {
-    "SectionName": "LOCATION",
-    "SectionId": 2,
-    "IsMultiSelection": false,
-    "Parameters": [
-      "City",
-      "Town",
-      "Forest",
-      "Desert",
-      "Beach",
-      "Mountain",
-      "Volcano",
-      "Island",
-      "River"
-    ]
-  },
-  {
-    "SectionName": "ANIMALS",
-    "SectionId": 3,
-    "IsMultiSelection": true,
-    "Parameters": [
-      "Cat",
-      "Dog",
-      "Rabbit",
-      "Turtle",
-      "Snake",
-      "Monkey",
-      "Gorilla",
-      "Eagle",
-      "Lion"
-    ]
-  }
+	{
+		"SectionName": "THEME",
+		"SectionId": 1,
+		"IsMultiSelection": false,
+		"Parameters": ["Adventure", "Comedy", "Fantasy", "Mystery"]
+	},
+	{
+		"SectionName": "LOCATION",
+		"SectionId": 2,
+		"IsMultiSelection": false,
+		"Parameters": [
+			"City",
+			"Town",
+			"Forest",
+			"Desert",
+			"Beach",
+			"Mountain",
+			"Volcano",
+			"Island",
+			"River"
+		]
+	},
+	{
+		"SectionName": "ANIMALS",
+		"SectionId": 3,
+		"IsMultiSelection": true,
+		"Parameters": [
+			"Cat",
+			"Dog",
+			"Rabbit",
+			"Turtle",
+			"Snake",
+			"Monkey",
+			"Gorilla",
+			"Eagle",
+			"Lion"
+		]
+	}
 ]

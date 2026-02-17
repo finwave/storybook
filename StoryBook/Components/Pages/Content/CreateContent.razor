@@ -2,39 +2,40 @@
 @inject NavigationManager Navigation
 
 @{
-    List<StoryParameterData> availableParameters = StoryParameterManager.GetAvailableParameters();
-    bool isFirstSectionStyle = true;
+  List<StoryParameterData> availableParameters = StoryParameterManager.GetAvailableParameters();
+  bool isFirstSectionStyle = true;
 
-    // Story parameters (sections)
-    foreach (StoryParameterData parameterSection in availableParameters)
+  // Story parameters (sections)
+  foreach (StoryParameterData parameterSection in availableParameters)
+  {
+    if ((parameterSection.SectionName == null) || (parameterSection.Parameters == null))
     {
-        if ((parameterSection.SectionName == null) || (parameterSection.Parameters == null))
-        {
-            continue;
-        }
-
-        string sectionName = parameterSection.SectionName;
-        int sectionId = parameterSection.SectionId;
-        bool isMultiSelection = parameterSection.IsMultiSelection;
-        List<string> parameterNames = parameterSection.Parameters;
-
-        string sectionStyle = isFirstSectionStyle ? "stack-mainline-1" : "stack-mainline-2";
-        isFirstSectionStyle = !isFirstSectionStyle;
-
-        <div class="@sectionStyle">
-            <div class="flex-center stack-child-title">@sectionName</div>
-            <StoryParameterSection SectionId=@sectionId ParameterNames=@parameterNames IsMultiSelection=@isMultiSelection />
-        </div>
+      continue;
     }
+
+    string sectionName = parameterSection.SectionName;
+    int sectionId = parameterSection.SectionId;
+    bool isMultiSelection = parameterSection.IsMultiSelection;
+    List<string> parameterNames = parameterSection.Parameters;
+
+    string sectionStyle = isFirstSectionStyle ? "stack-mainline-1" : "stack-mainline-2";
+    isFirstSectionStyle = !isFirstSectionStyle;
+
+    <div class="@sectionStyle">
+      <div class="flex-center stack-child-title">@sectionName</div>
+      <StoryParameterSection SectionId=@sectionId ParameterNames=@parameterNames IsMultiSelection=@isMultiSelection />
+    </div>
+  }
+
 }
 
 <div class="flex-center-vertical stack-line-confirm">
-    <Button class="stack-button stack-button-confirm" Color="Color.Success" @onclick="OnCreate">CREATE</Button>
+  <Button class="stack-button stack-button-confirm" Color="Color.Success" @onclick="OnCreate">CREATE</Button>
 </div>
 
 @code {
-    private void OnCreate()
-    {
-        Navigation.NavigateTo("/Generate");
-    }
+  private void OnCreate()
+  {
+    Navigation.NavigateTo("/Generate");
+  }
 }

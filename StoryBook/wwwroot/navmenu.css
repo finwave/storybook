@@ -33,7 +33,10 @@
 	writing-mode: vertical-lr;
 	text-orientation: upright;
 	/* text outline */
-	text-shadow: -2px -2px 0 #452401, 2px -2px 0 #452401, -2px 2px 0 #452401,
+	text-shadow:
+		-2px -2px 0 #452401,
+		2px -2px 0 #452401,
+		-2px 2px 0 #452401,
 		2px 2px 0 #452401;
 }
 
@@ -56,8 +59,11 @@
 		rgba(53, 37, 22, 1) 100%
 	);
 	/* text outline */
-	text-shadow: -1px -1px 0 #00000090, 1px -1px 0 #00000090,
-		-1px 1px 0 #00000090, 1px 1px 0 #00000090;
+	text-shadow:
+		-1px -1px 0 #00000090,
+		1px -1px 0 #00000090,
+		-1px 1px 0 #00000090,
+		1px 1px 0 #00000090;
 }
 
 .button-side-normal:hover {
@@ -83,7 +89,10 @@
 		rgba(105, 63, 23, 1) 100%
 	);
 	/* text outline */
-	text-shadow: -1px -1px 0 #623919, 1px -1px 0 #623919, -1px 1px 0 #623919,
+	text-shadow:
+		-1px -1px 0 #623919,
+		1px -1px 0 #623919,
+		-1px 1px 0 #623919,
 		1px 1px 0 #623919;
 }
 
