@@ -3,12 +3,17 @@
 
 @{
   List<StoryParameterData> availableParameters = StoryParameterManager.GetAvailableParameters();
-  bool isFirstSectionStyle = true;
 
   // Story parameters (sections)
   foreach (StoryParameterData parameterSection in availableParameters)
   {
-    if ((parameterSection.SectionName == null) || (parameterSection.Parameters == null))
+    if ((parameterSection.SectionName == null) || (parameterSection.Parameters == null) ||
+        (parameterSection.ImageUrls == null))
+    {
+      continue;
+    }
+
+    if (parameterSection.ParameterType != ParameterType)
     {
       continue;
     }
@@ -17,23 +22,82 @@
     int sectionId = parameterSection.SectionId;
     bool isMultiSelection = parameterSection.IsMultiSelection;
     List<string> parameterNames = parameterSection.Parameters;
+    List<string> imageUrls = parameterSection.ImageUrls;
 
-    string sectionStyle = isFirstSectionStyle ? "stack-mainline-1" : "stack-mainline-2";
-    isFirstSectionStyle = !isFirstSectionStyle;
-
-    <div class="@sectionStyle">
-      <div class="flex-center stack-child-title">@sectionName</div>
-      <StoryParameterSection SectionId=@sectionId ParameterNames=@parameterNames IsMultiSelection=@isMultiSelection />
-    </div>
+    if (ViewMode == EParamViewMode.Images)
+    {
+      <div class="stack-container">
+        <div class="stack-description">@sectionName</div>
+        <StoryParameterSectionImages SectionId=@sectionId ParameterNames=@parameterNames ImageUrls=@imageUrls
+                                     IsMultiSelection=@isMultiSelection />
+      </div>
+    }
+    else if (ViewMode == EParamViewMode.Buttons)
+    {
+      <div class="stack-container">
+        <div class="stack-description">@sectionName</div>
+        <StoryParameterSectionButtons SectionId=@sectionId ParameterNames=@parameterNames
+                                      IsMultiSelection=@isMultiSelection />
+      </div>
+    }
+    break;
   }
-
 }
 
-<div class="flex-center-vertical stack-line-confirm">
-  <Button class="stack-button stack-button-confirm" Color="Color.Success" @onclick="OnCreate">CREATE</Button>
+<div class="footer-area">
+  @{
+    // first parameter type
+    if ((int)ParameterType == 0)
+    {
+      <Button class="footer-button-right" Color="Color.Primary" @onclick="OnNext">Next</Button>
+    }
+    // last parameter type
+    else if ((int)ParameterType == (int)EStoryParamType.MaxCount - 1)
+    {
+      <Button class="footer-button-left" Color="Color.Primary" @onclick="OnPrevious">Previous</Button>
+      <Button class="footer-button-right" Color="Color.Success" @onclick="OnCreate">Create</Button>
+    }
+    // any other parameter type
+    else
+    {
+      <Button class="footer-button-left" Color="Color.Primary" @onclick="OnPrevious">Previous</Button>
+      <Button class="footer-button-right" Color="Color.Primary" @onclick="OnNext">Next</Button>
+    }
+  }
 </div>
 
 @code {
+  [Parameter]
+  public EParamViewMode ViewMode { get; set; }
+  [Parameter]
+  public EStoryParamType ParameterType { get; set; }
+
+  private void OnPrevious()
+  {
+    int parameterTypeValue = (int)ParameterType;
+    parameterTypeValue--;
+
+    if (parameterTypeValue < 0)
+    {
+      parameterTypeValue = (int)EStoryParamType.MaxCount - 1;
+    }
+
+    Navigation.NavigateTo($"/Create?param_type={parameterTypeValue}");
+  }
+
+  private void OnNext()
+  {
+    int parameterTypeValue = (int)ParameterType;
+    parameterTypeValue++;
+
+    if (parameterTypeValue >= (int)EStoryParamType.MaxCount)
+    {
+      parameterTypeValue = 0;
+    }
+
+    Navigation.NavigateTo($"/Create?param_type={parameterTypeValue}");
+  }
+
   private void OnCreate()
   {
     Navigation.NavigateTo("/Generate");

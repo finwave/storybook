@@ -1,12 +1,14 @@
 ﻿@page "/Generate"
 
-<div class="layout-demo main-layout" style="height: 100%;">
-  <Layout ShowFooter="false" SideWidth="12%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
+<div class="layout-demo" style="height: 100%;">
+  <Layout ShowFooter="false" SideWidth="10%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
     <Side>
       <MySideMenu CurrentPage=EPage.Generate />
     </Side>
     <Main>
-      <GenerateContent />
+      <div class="page-content">
+        <GenerateContent />
+      </div>
     </Main>
   </Layout>
 </div>

@@ -2,13 +2,27 @@ namespace StoryBook.Scripts;
 
 public enum EPage
 {
-    Browse,
-    Create,
-    Generate
+  Browse,
+  Create,
+  Generate
 }
 
 public enum EToggleState
 {
-    Normal,
-    Selected
+  Normal,
+  Selected
+}
+
+public enum EParamViewMode
+{
+  Buttons,
+  Images
+}
+
+public enum EStoryParamType
+{
+  Theme,
+  Location,
+  Animal,
+  MaxCount
 }

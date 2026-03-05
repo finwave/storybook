@@ -1,14 +1,40 @@
 ﻿@page "/Create"
+@inject NavigationManager NavManager
+@using Microsoft.AspNetCore.WebUtilities
+@using Microsoft.Extensions.Primitives
 
-<div class="layout-demo main-layout" style="height: 100%;">
-  <Layout ShowFooter="false" SideWidth="12%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
+<div class="layout-demo" style="height: 100%;">
+  <Layout ShowFooter="false" SideWidth="10%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
     <Side>
       <MySideMenu CurrentPage=EPage.Create />
     </Side>
     <Main>
-      <div class="main-body">
-        <CreateContent />
+      <div class="page-content">
+        <CreateContent ViewMode=EParamViewMode.Images ParameterType=parameterType />
       </div>
     </Main>
   </Layout>
 </div>
+
+@code {
+  private EStoryParamType parameterType = EStoryParamType.Theme;
+
+  protected override void OnInitialized()
+  {
+    // Get the current URI
+    Uri? uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+
+    // Parse query parameters into a dictionary
+    if (QueryHelpers.ParseQuery(uri.Query) is Dictionary<string, StringValues> queryParameters)
+    {
+      // Extract "param_type" parameter
+      if (queryParameters.TryGetValue("param_type", out var queryValue))
+      {
+        if (Enum.TryParse(queryValue, out EStoryParamType parsedParamType))
+        {
+          parameterType = parsedParamType;
+        }
+      }
+    }
+  }
+}

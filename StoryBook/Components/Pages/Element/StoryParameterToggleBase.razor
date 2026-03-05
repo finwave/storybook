@@ -1,0 +1,83 @@
+@code {
+  [Parameter]
+  public string Class { get; set; } = "";
+  [Parameter]
+  public int SectionId { get; set; } = 0;
+  [Parameter]
+  public string ParamName { get; set; } = "";
+  [Parameter]
+  public bool IsMultiSelection { get; set; } = false;
+  [Parameter]
+  public Color ToggleColor { get; set; } = Color.None;
+  [Parameter]
+  public EventCallback onDoneButtonClicked { get; set; }
+
+  protected EToggleState currentToggleState = EToggleState.Normal;
+
+  protected override void OnParametersSet()
+  {
+    base.OnParametersSet();
+
+    bool isSelected = StoryParameterManager.IsSelectedParameter(SectionId, ParamName);
+    EToggleState nextState = isSelected ? EToggleState.Selected : EToggleState.Normal;
+    SwitchToggleState(nextState);
+  }
+
+  public async Task OnButtonClick()
+  {
+    if (IsMultiSelection)
+    {
+      int currentSelectedAmount = StoryParameterManager.GetSelectedParametersAmount(SectionId);
+
+      if (IsSelected() && (currentSelectedAmount == 1))
+      {
+        return;
+      }
+    }
+    else
+    {
+      if (IsSelected())
+      {
+        return;
+      }
+    }
+
+    SwapToggleState();
+    StoryParameterManager.ToggleSelectedParameter(SectionId, ParamName, IsMultiSelection, IsSelected());
+
+    if (!IsMultiSelection)
+    {
+      await onDoneButtonClicked.InvokeAsync();
+    }
+  }
+
+  private void SwapToggleState()
+  {
+    EToggleState nextState = (currentToggleState == EToggleState.Normal) ? EToggleState.Selected : EToggleState.Normal;
+    SwitchToggleState(nextState);
+  }
+
+  private void SwitchToggleState(EToggleState nextState)
+  {
+    currentToggleState = nextState;
+    UpdateColor();
+  }
+
+  virtual protected void UpdateColor()
+  {
+    switch (currentToggleState)
+    {
+      case EToggleState.Normal:
+        ToggleColor = Color.None;
+        break;
+      case EToggleState.Selected:
+        ToggleColor = Color.Primary;
+        break;
+    }
+  }
+
+  private bool IsSelected()
+  {
+    return (currentToggleState == EToggleState.Selected);
+  }
+}

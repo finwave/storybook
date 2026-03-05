@@ -44,6 +44,7 @@ public class StoryParameterManager
       for (int i = 0; i < jsonOutputArray.Length; i++)
       {
         StoryParameterData parameterData = jsonOutputArray[i];
+        parameterData.Init();
         s_ListAvailableParameters.Add(parameterData);
       }
     }

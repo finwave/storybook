@@ -3,7 +3,13 @@
 		"SectionName": "THEME",
 		"SectionId": 1,
 		"IsMultiSelection": false,
-		"Parameters": ["Adventure", "Comedy", "Fantasy", "Mystery"]
+		"Parameters": ["Adventure", "Comedy", "Fantasy", "Mystery"],
+		"ImageUrls": [
+			"images/theme_adventure.jpg",
+			"images/theme_comedy.jpg",
+			"images/theme_fantasy.jpg",
+			"images/theme_mystery.jpg"
+		]
 	},
 	{
 		"SectionName": "LOCATION",
@@ -15,10 +21,19 @@
 			"Forest",
 			"Desert",
 			"Beach",
-			"Mountain",
 			"Volcano",
 			"Island",
 			"River"
+		],
+		"ImageUrls": [
+			"images/location_city.jpg",
+			"images/location_town.jpg",
+			"images/location_forest.jpg",
+			"images/location_desert.jpg",
+			"images/location_beach.jpg",
+			"images/location_volcano.jpg",
+			"images/location_island.jpg",
+			"images/location_river.jpg"
 		]
 	},
 	{
@@ -31,10 +46,21 @@
 			"Rabbit",
 			"Turtle",
 			"Snake",
-			"Monkey",
+			"Scorpion",
 			"Gorilla",
-			"Eagle",
-			"Lion"
+			"Lion",
+			"Eagle"
+		],
+		"ImageUrls": [
+			"images/animal_cat.jpg",
+			"images/animal_dog.jpg",
+			"images/animal_rabbit.jpg",
+			"images/animal_turtle.jpg",
+			"images/animal_snake.jpg",
+			"images/animal_scorpion.jpg",
+			"images/animal_gorilla.jpg",
+			"images/animal_lion.jpg",
+			"images/animal_eagle.jpg"
 		]
 	}
 ]

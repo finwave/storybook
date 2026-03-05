@@ -1,12 +1,14 @@
 ﻿@page "/"
 
-<div class="layout-demo main-layout" style="height: 100%;">
-  <Layout ShowFooter="false" SideWidth="12%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
+<div class="layout-demo" style="height: 100%;">
+  <Layout ShowFooter="false" SideWidth="10%" AdditionalAssemblies="[typeof(MainLayout).Assembly]">
     <Side>
       <MySideMenu CurrentPage=EPage.Browse />
     </Side>
     <Main>
-      <BrowseContent />
+      <div class="page-content">
+        <BrowseContent />
+      </div>
     </Main>
   </Layout>
 </div>

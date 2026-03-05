@@ -1,0 +1,21 @@
+@rendermode InteractiveServer
+@inherits StoryParameterSectionBase
+
+@{
+  <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
+         IsReverse="false">
+    @{
+      for (int parameterIndex = 0; parameterIndex < ParameterNames.Count; parameterIndex++)
+      {
+        string parameterName = ParameterNames[parameterIndex];
+
+        <StackItem>
+          <div class="stack-item-demo">
+            <StoryParameterToggle Class="stack-button caption" SectionId=SectionId ParamName=@parameterName
+                                  IsMultiSelection=IsMultiSelection onDoneButtonClicked="OnButtonClicked" />
+          </div>
+        </StackItem>
+      }
+    }
+  </Stack>
+}

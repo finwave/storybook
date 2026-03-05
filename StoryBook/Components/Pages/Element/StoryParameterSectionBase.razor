@@ -1,0 +1,13 @@
+@code {
+  [Parameter]
+  public int SectionId { get; set; }
+  [Parameter]
+  public List<string> ParameterNames { get; set; } = [];
+  [Parameter]
+  public bool IsMultiSelection { get; set; } = false;
+
+  public void OnButtonClicked()
+  {
+    StateHasChanged();
+  }
+}

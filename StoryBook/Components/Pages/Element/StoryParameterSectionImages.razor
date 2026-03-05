@@ -1,0 +1,38 @@
+@rendermode InteractiveServer
+@inherits StoryParameterSectionBase
+
+@{
+  <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
+         IsReverse="false">
+    @{
+      for (int parameterIndex = 0; parameterIndex < ParameterNames.Count; parameterIndex++)
+      {
+        string parameterName = ParameterNames[parameterIndex];
+        string imageUrl = ImageUrls[parameterIndex];
+
+        <StackItem>
+          <div class="stack-item-demo">
+            @{
+              string mainClass = "stack-image-small";
+              string captionClass = "caption stack-caption-small";
+
+              if (ImageUrls.Count <= 5)
+              {
+                mainClass = "stack-image-large";
+                captionClass = "caption stack-caption-large";
+              }
+
+              <StoryParameterImage Class=@mainClass CaptionClass=@captionClass SectionId=SectionId ParamName=@parameterName
+                                   ImageUrl=@imageUrl IsMultiSelection=IsMultiSelection onDoneButtonClicked="OnButtonClicked" />
+            }
+          </div>
+        </StackItem>
+      }
+    }
+  </Stack>
+}
+
+@code {
+  [Parameter]
+  public List<string> ImageUrls { get; set; } = [];
+}

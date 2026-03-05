@@ -1,0 +1,30 @@
+@rendermode InteractiveServer
+@inherits StoryParameterToggleBase
+
+<button class="@Class @selectedClass" style="background: url(@ImageUrl) no-repeat center/cover;"
+        @onclick="OnButtonClick" />
+<div class="@CaptionClass">@ParamName</div>
+
+@code {
+  [Parameter]
+  public string ImageUrl { get; set; } = "";
+  [Parameter]
+  public string CaptionClass { get; set; } = "";
+
+  private string selectedClass = "stack-image-unselected";
+
+  override protected void UpdateColor()
+  {
+    base.UpdateColor();
+
+    switch (currentToggleState)
+    {
+      case EToggleState.Normal:
+        selectedClass = "stack-image-unselected";
+        break;
+      case EToggleState.Selected:
+        selectedClass = "stack-image-selected";
+        break;
+    }
+  }
+}
