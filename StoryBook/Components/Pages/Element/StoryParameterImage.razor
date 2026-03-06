@@ -3,13 +3,15 @@
 
 <button class="@Class @selectedClass" style="background: url(@ImageUrl) no-repeat center/cover;"
         @onclick="OnButtonClick" />
-<div class="@CaptionClass">@ParamName</div>
+<div class="@CaptionClass">@CaptionText</div>
 
 @code {
   [Parameter]
   public string ImageUrl { get; set; } = "";
   [Parameter]
   public string CaptionClass { get; set; } = "";
+  [Parameter]
+  public string CaptionText { get; set; } = "";
 
   private string selectedClass = "stack-image-unselected";
 

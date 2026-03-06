@@ -1,4 +1,11 @@
-﻿<h3>Browse</h3>
+﻿@rendermode InteractiveServer
+@inject IStringLocalizer<Common> LocaleCommon
+
+@{
+  <div class="stack-container">
+    <div class="stack-description">@LocaleCommon["Browse"]</div>
+  </div>
+}
 
 @code {
 

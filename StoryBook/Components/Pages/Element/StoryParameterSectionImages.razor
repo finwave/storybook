@@ -1,5 +1,6 @@
 @rendermode InteractiveServer
 @inherits StoryParameterSectionBase
+@inject IStringLocalizer<Parameters> LocaleParameters
 
 @{
   <Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="true"
@@ -22,8 +23,9 @@
                 captionClass = "caption stack-caption-large";
               }
 
-              <StoryParameterImage Class=@mainClass CaptionClass=@captionClass SectionId=SectionId ParamName=@parameterName
-                                   ImageUrl=@imageUrl IsMultiSelection=IsMultiSelection onDoneButtonClicked="OnButtonClicked" />
+              <StoryParameterImage Class=@mainClass CaptionClass=@captionClass CaptionText=@LocaleParameters[parameterName]
+                                   SectionId=SectionId ParamName=@parameterName ImageUrl=@imageUrl IsMultiSelection=IsMultiSelection
+                                   onDoneButtonClicked="OnButtonClicked" />
             }
           </div>
         </StackItem>

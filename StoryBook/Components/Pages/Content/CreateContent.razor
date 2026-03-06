@@ -1,5 +1,6 @@
 ﻿@rendermode InteractiveServer
 @inject NavigationManager Navigation
+@inject IStringLocalizer<Common> LocaleCommon
 
 @{
   List<StoryParameterData> availableParameters = StoryParameterManager.GetAvailableParameters();
@@ -18,7 +19,17 @@
       continue;
     }
 
-    string sectionName = parameterSection.SectionName;
+    string selectDescription = LocaleCommon["CreateSelectTheme"];
+
+    if (parameterSection.ParameterType == EStoryParamType.Location)
+    {
+      selectDescription = LocaleCommon["CreateSelectLocation"];
+    }
+    else if (parameterSection.ParameterType == EStoryParamType.Animal)
+    {
+      selectDescription = LocaleCommon["CreateSelectAnimals"];
+    }
+
     int sectionId = parameterSection.SectionId;
     bool isMultiSelection = parameterSection.IsMultiSelection;
     List<string> parameterNames = parameterSection.Parameters;
@@ -27,7 +38,7 @@
     if (ViewMode == EParamViewMode.Images)
     {
       <div class="stack-container">
-        <div class="stack-description">@sectionName</div>
+        <div class="stack-description">@selectDescription</div>
         <StoryParameterSectionImages SectionId=@sectionId ParameterNames=@parameterNames ImageUrls=@imageUrls
                                      IsMultiSelection=@isMultiSelection />
       </div>
@@ -35,7 +46,7 @@
     else if (ViewMode == EParamViewMode.Buttons)
     {
       <div class="stack-container">
-        <div class="stack-description">@sectionName</div>
+        <div class="stack-description">@selectDescription</div>
         <StoryParameterSectionButtons SectionId=@sectionId ParameterNames=@parameterNames
                                       IsMultiSelection=@isMultiSelection />
       </div>
@@ -49,19 +60,24 @@
     // first parameter type
     if ((int)ParameterType == 0)
     {
-      <Button class="footer-button-right" Color="Color.Primary" @onclick="OnNext">Next</Button>
+      <Button class="button-medium footer-button-right" Color="Color.Primary"
+              @onclick="OnNext">@LocaleCommon["Next"]</Button>
     }
     // last parameter type
     else if ((int)ParameterType == (int)EStoryParamType.MaxCount - 1)
     {
-      <Button class="footer-button-left" Color="Color.Primary" @onclick="OnPrevious">Previous</Button>
-      <Button class="footer-button-right" Color="Color.Success" @onclick="OnCreate">Create</Button>
+      <Button class="button-medium footer-button-left" Color="Color.Primary"
+              @onclick="OnPrevious">@LocaleCommon["Previous"]</Button>
+      <Button class="button-bold footer-button-right" Color="Color.Success"
+              @onclick="OnCreate">@LocaleCommon["Create"].ToString().ToUpper()</Button>
     }
     // any other parameter type
     else
     {
-      <Button class="footer-button-left" Color="Color.Primary" @onclick="OnPrevious">Previous</Button>
-      <Button class="footer-button-right" Color="Color.Primary" @onclick="OnNext">Next</Button>
+      <Button class="button-medium footer-button-left" Color="Color.Primary"
+              @onclick="OnPrevious">@LocaleCommon["Previous"]</Button>
+      <Button class="button-medium footer-button-right" Color="Color.Primary"
+              @onclick="OnNext">@LocaleCommon["Next"]</Button>
     }
   }
 </div>

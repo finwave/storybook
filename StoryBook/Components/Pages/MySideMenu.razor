@@ -1,5 +1,6 @@
 ﻿@rendermode InteractiveServer
 @inject NavigationManager Navigation
+@inject IStringLocalizer<Common> LocaleCommon
 
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
@@ -8,16 +9,20 @@
     <Stack IsRow="false" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="false"
            IsReverse="false">
       @{
+        string textTitle = LocaleCommon["Title"].ToString().ToUpper();
+        string textBrowse = LocaleCommon["Browse"].ToString().ToUpper(); ;
+        string textCreate = LocaleCommon["CreateNew"].ToString().ToUpper(); ;
+
         if (CurrentPage == EPage.Browse)
         {
           <StackItem>
             <div class="stack-item-demo">
-              <button class="side-element button-side-selected">BROWSE</button>
+              <button class="side-element button-side-selected">@textBrowse</button>
             </div>
           </StackItem>
           <StackItem>
             <div class="stack-item-demo">
-              <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
+              <button class="side-element button-side-normal" @onclick="OnButtonCreate">@textCreate</button>
             </div>
           </StackItem>
         }
@@ -25,12 +30,12 @@
         {
           <StackItem>
             <div class="stack-item-demo">
-              <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
+              <button class="side-element button-side-normal" @onclick="OnButtonBrowse">@textBrowse</button>
             </div>
           </StackItem>
           <StackItem>
             <div class="stack-item-demo">
-              <button class="side-element button-side-selected">CREATE</button>
+              <button class="side-element button-side-selected">@textCreate</button>
             </div>
           </StackItem>
         }
@@ -38,21 +43,22 @@
         {
           <StackItem>
             <div class="stack-item-demo">
-              <button class="side-element button-side-normal" @onclick="OnButtonBrowse">BROWSE</button>
+              <button class="side-element button-side-normal" @onclick="OnButtonBrowse">@textBrowse</button>
             </div>
           </StackItem>
           <StackItem>
             <div class="stack-item-demo">
-              <button class="side-element button-side-normal" @onclick="OnButtonCreate">CREATE</button>
+              <button class="side-element button-side-normal" @onclick="OnButtonCreate">@textCreate</button>
             </div>
           </StackItem>
         }
+
+        <StackItem class="flex-center side-title">
+          <div class="stack-item-demo">
+            <div>@textTitle</div>
+          </div>
+        </StackItem>
       }
-      <StackItem class="flex-center side-title">
-        <div class="stack-item-demo">
-          <div>STORYBOOK</div>
-        </div>
-      </StackItem>
     </Stack>
   </div>
 </div>
