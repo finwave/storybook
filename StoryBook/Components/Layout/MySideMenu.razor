@@ -5,6 +5,12 @@
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div class="side-container">
+  <div class="side-footer-container">
+    <div class="side-footer-item">@LocaleCommon["Language"]</div>
+    <div class="side-footer-item" style="margin-top: 0.3rem;">
+      <CultureSelector />
+    </div>
+  </div>
   <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <Stack IsRow="false" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Stretch" IsWrap="false"
            IsReverse="false">
