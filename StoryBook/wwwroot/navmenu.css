@@ -3,6 +3,7 @@
 }
 
 .side-container {
+	position: relative;
 	height: 100%;
 	/* colors: carob, cedar */
 	background: #3d2a19;
@@ -13,6 +14,24 @@
 		rgba(83, 60, 42, 1) 85%,
 		rgba(61, 42, 25, 1) 100%
 	);
+}
+
+.side-footer-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 4.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+	color: white;
+}
+
+.side-footer-item {
+	font-family: "roboto-medium";
+	font-size: 1rem;
 }
 
 .side-element,
@@ -27,7 +46,7 @@
 }
 
 .side-title {
-	height: calc(100% - 2 * 4rem);
+	height: calc(100% - 2 * 4rem - 4.5rem);
 	font-family: "roboto-black";
 	font-size: 3.75rem;
 	writing-mode: vertical-lr;
