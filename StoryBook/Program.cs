@@ -2,12 +2,13 @@ using StoryBook.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add localization services
-builder.Services.AddLocalization();
 // Add services to the container.
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 // BootstrapBlazor
 builder.Services.AddBootstrapBlazor();
+// Add localization services
+builder.Services.AddLocalization();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -31,6 +32,8 @@ app.UseHttpsRedirection();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
+app.MapControllers();
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
