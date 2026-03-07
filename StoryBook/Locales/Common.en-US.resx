@@ -144,4 +144,7 @@
   <data name="CreateNew" xml:space="preserve">
     <value>Create</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
 </root>
