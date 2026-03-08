@@ -215,7 +215,7 @@ left-aligned horizontally, and vertical direction of flex items */
 
 .stack-description {
 	position: absolute;
-	margin-top: -2.75rem;
+	margin-top: -3rem;
 	font-family: "roboto-medium";
 	font-size: 1.3rem;
 	color: black;
@@ -226,11 +226,27 @@ left-aligned horizontally, and vertical direction of flex items */
 	margin-right: 1rem;
 }
 
+.stack-caption-small,
+.stack-caption-large {
+	padding-top: 0.2rem;
+	padding-bottom: 1rem;
+}
+
+.stack-caption-small {
+	width: 12rem;
+	font-size: 1rem;
+}
+
 .stack-image-small {
 	border: 0.2rem solid;
-	width: 9.5rem;
-	height: calc(1.5 * 9.5rem);
+	width: 12rem;
+	height: calc(1.5 * 12rem);
 	margin-right: 1rem;
+}
+
+.stack-caption-large {
+	width: 20rem;
+	font-size: 1.15rem;
 }
 
 .stack-image-large {
@@ -253,20 +269,6 @@ left-aligned horizontally, and vertical direction of flex items */
 	font-size: 1rem;
 	text-align: center;
 	color: black;
-}
-
-.stack-caption-small,
-.stack-caption-large {
-	padding-top: 0.2rem;
-}
-
-.stack-caption-small {
-	width: 9.5rem;
-}
-
-.stack-caption-large {
-	width: 20rem;
-	font-size: 1.15rem;
 }
 
 /* BOOTSTRAP BLAZOR / OVERRIDES */
