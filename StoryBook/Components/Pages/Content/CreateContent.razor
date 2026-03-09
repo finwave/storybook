@@ -38,7 +38,7 @@
     if (ViewMode == EParamViewMode.Images)
     {
       <div class="stack-container">
-        <div class="description stack-description">@selectDescription</div>
+        <div class="description">@selectDescription</div>
         <StoryParameterSectionImages SectionId=@sectionId ParameterNames=@parameterNames ImageUrls=@imageUrls
                                      IsMultiSelection=@isMultiSelection />
       </div>
@@ -46,7 +46,7 @@
     else if (ViewMode == EParamViewMode.Buttons)
     {
       <div class="stack-container">
-        <div class="description stack-description">@selectDescription</div>
+        <div class="description">@selectDescription</div>
         <StoryParameterSectionButtons SectionId=@sectionId ParameterNames=@parameterNames
                                       IsMultiSelection=@isMultiSelection />
       </div>

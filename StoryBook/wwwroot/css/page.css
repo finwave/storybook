@@ -1,42 +1,38 @@
 /* content area of 100% width and height, with flex layout, content top-aligned vertically, 
 left-aligned horizontally, and vertical direction of flex items */
-.page-content-top,
-.page-content-center {
+.page-content-center,
+.page-content-top {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-}
-
-.page-content-top {
-	align-items: flex-start;
-	justify-content: flex-start;
+	row-gap: 2rem;
 }
 
 .page-content-center {
 	align-items: center;
 	justify-content: center;
-	row-gap: 2rem;
+}
+
+.page-content-top {
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding: 1.2rem 0 0 1.5rem;
 }
 
 .stack-container {
 	width: 100%;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	padding: 4.5rem 0 0 1.5rem;
+	row-gap: 1.2rem;
 }
 
 .description {
 	font-family: "roboto-medium";
 	font-size: 1.3rem;
 	color: black;
-}
-
-.stack-description {
-	position: absolute;
-	margin-top: -3rem;
 }
 
 .stack-button {
