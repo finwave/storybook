@@ -148,6 +148,7 @@ h1:focus {
 
 .layout-main {
 	padding: 0 !important;
+	background-color: rgb(230, 230, 230);
 }
 
 .btn.stack-button.caption,
