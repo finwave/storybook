@@ -50,7 +50,10 @@
 }
 
 .side-footer-selector {
+	border-radius: 0.475rem;
 	min-height: 2.3632rem;
+	font-family: "roboto-medium";
+	background-color: rgb(230, 230, 230);
 }
 
 .side-element,
