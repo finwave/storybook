@@ -1,0 +1,78 @@
+/* content area of 100% width and height, with flex layout, content top-aligned vertically, 
+left-aligned horizontally, and vertical direction of flex items */
+.page-content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	background-color: rgb(230, 230, 230);
+}
+
+.stack-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding: 4.5rem 0 0 1.5rem;
+}
+
+.stack-description {
+	position: absolute;
+	margin-top: -3rem;
+	font-family: "roboto-medium";
+	font-size: 1.3rem;
+	color: black;
+}
+
+.stack-button {
+	min-width: 6.2rem;
+	margin-right: 1rem;
+}
+
+.stack-caption-small,
+.stack-caption-large {
+	padding-top: 0.2rem;
+	padding-bottom: 1rem;
+}
+
+.stack-caption-small {
+	width: 12rem;
+	font-size: 1rem;
+}
+
+.stack-image-small {
+	border: 0.2rem solid;
+	width: 12rem;
+	height: calc(1.5 * 12rem);
+	margin-right: 1rem;
+}
+
+.stack-caption-large {
+	width: 20rem;
+	font-size: 1.15rem;
+}
+
+.stack-image-large {
+	border: 0.25rem solid;
+	width: 20rem;
+	height: calc(1.5 * 20rem);
+	margin-right: 1.5rem;
+}
+
+.stack-image-unselected {
+	border-color: white;
+}
+
+.stack-image-selected {
+	border-color: #009ef7;
+}
+
+.caption {
+	font-family: "roboto-medium";
+	font-size: 1rem;
+	text-align: center;
+	color: black;
+}

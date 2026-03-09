@@ -1,0 +1,12 @@
+.header-title {
+	margin-right: 2.5rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.header-item {
+	margin-right: 1.5rem;
+}
+.header-item:last-child {
+	margin-right: 0;
+}

@@ -1,0 +1,29 @@
+/* footer area of 90% width, height of 4rem, with content centered vertically and horizontally */
+.footer-area {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 90%;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer-button-left,
+.footer-button-right {
+	font-size: 1rem;
+	width: 6.2rem;
+}
+
+/* left aligned flex item with left margin of 1rem */
+.footer-button-left {
+	margin-right: auto;
+	margin-left: 1rem;
+}
+
+/* right aligned flex item with right margin of 1rem */
+.footer-button-right {
+	margin-left: auto;
+	margin-right: 1rem;
+}
