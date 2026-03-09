@@ -150,5 +150,14 @@ namespace StoryBook.Locales {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to No available stories.
+        /// </summary>
+        public static string BrowseEmpty {
+            get {
+                return ResourceManager.GetString("BrowseEmpty", resourceCulture);
+            }
+        }
+        
     }
 }

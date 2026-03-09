@@ -147,4 +147,7 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="BrowseEmpty" xml:space="preserve">
+    <value>No available stories</value>
+  </data>
 </root>

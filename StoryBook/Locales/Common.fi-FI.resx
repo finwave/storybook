@@ -147,4 +147,7 @@
   <data name="Language" xml:space="preserve">
     <value>Kieli</value>
   </data>
+  <data name="BrowseEmpty" xml:space="preserve">
+    <value>Ei saatavilla olevia satuja</value>
+  </data>
 </root>
