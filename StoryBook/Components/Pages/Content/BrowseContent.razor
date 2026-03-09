@@ -1,12 +1,17 @@
 ﻿@rendermode InteractiveServer
+@inject NavigationManager Navigation
 @inject IStringLocalizer<Common> LocaleCommon
 
 @{
-  <div class="stack-container">
-    <div class="stack-description">@LocaleCommon["Browse"]</div>
-  </div>
+  <div class="description">@LocaleCommon["BrowseEmpty"]</div>
+  <Button class="button-bold footer-button" Color="Color.Success"
+          @onclick="OnCreate">@LocaleCommon["CreateNew"].ToString().ToUpper()</Button>
 }
 
 @code {
-
+  private void OnCreate()
+  {
+    StoryParameterManager.Initialize();
+    Navigation.NavigateTo("/Create");
+  }
 }
