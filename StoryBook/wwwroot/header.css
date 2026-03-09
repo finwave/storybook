@@ -1,12 +1,35 @@
+.header-container {
+	background: rgba(83, 60, 42, 1);
+	min-height: 3rem;
+}
+
+.header-title,
+.header-item {
+	color: #f6edd6;
+}
+
 .header-title {
-	margin-right: 2.5rem;
+	min-width: calc(100vw / 10);
+	margin-right: 1.5rem;
+	font-family: "roboto-black";
 	font-size: 1.5rem;
-	font-weight: bold;
+	text-align: center;
+	/* text outline */
+	text-shadow:
+		-1px -1px 0 #452401,
+		1px -1px 0 #452401,
+		-1px 1px 0 #452401,
+		1px 1px 0 #452401;
 }
 
 .header-item {
 	margin-right: 1.5rem;
-}
-.header-item:last-child {
-	margin-right: 0;
+	font-family: "roboto-medium";
+	font-size: 0.9rem;
+	/* text outline */
+	text-shadow:
+		-1px -1px 0 #00000050,
+		1px -1px 0 #00000050,
+		-1px 1px 0 #00000050,
+		1px 1px 0 #00000050;
 }

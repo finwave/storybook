@@ -1,22 +1,45 @@
-﻿<Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Center" IsWrap="true"
-       IsReverse="false">
-  <StackItem>
-    <div class="stack-item-demo header-title">
-      Storybook
-    </div>
-  </StackItem>
-  <StackItem>
-    <div class="stack-item-demo header-item">
-      <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-        <span class="bi bi-list" aria-hidden="true"></span> Browse
-      </NavLink>
-    </div>
-  </StackItem>
-  <StackItem>
-    <div class="stack-item-demo header-item">
-      <NavLink class="nav-link" href="/Create">
-        <span class="bi bi-pencil-square" aria-hidden="true"></span> Create
-      </NavLink>
-    </div>
-  </StackItem>
+﻿@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject IStringLocalizer<Common> LocaleCommon
+
+<Stack IsRow="true" Justify="StackJustifyContent.Start" AlignItems="StackAlignItems.Center" IsWrap="true"
+       IsReverse="false" class="header-container">
+  @{
+    string textTitle = LocaleCommon["Title"].ToString().ToUpper();
+    string textBrowse = LocaleCommon["Browse"].ToString().ToUpper();
+    string textCreate = LocaleCommon["CreateNew"].ToString().ToUpper();
+
+    <StackItem>
+      <div class="stack-item-demo header-title">
+        @textTitle
+      </div>
+    </StackItem>
+    <StackItem>
+      <div class="stack-item-demo header-item">
+        <NavLink class="nav-link" Match="NavLinkMatch.All" @onclick="OnButtonBrowse">
+          <span class="bi bi-list" aria-hidden="true"></span>&nbsp;@textBrowse
+        </NavLink>
+      </div>
+    </StackItem>
+    <StackItem>
+      <div class="stack-item-demo header-item">
+        <NavLink class="nav-link" @onclick="OnButtonCreate">
+          <span class="bi bi-pencil-square" aria-hidden="true"></span>&nbsp;@textCreate
+        </NavLink>
+      </div>
+    </StackItem>
+  }
 </Stack>
+
+@code {
+  private void OnButtonBrowse()
+  {
+    Navigation.NavigateTo("/");
+  }
+
+  private void OnButtonCreate()
+  {
+    StoryParameterManager.Initialize();
+    Navigation.NavigateTo("/Create");
+  }
+}
