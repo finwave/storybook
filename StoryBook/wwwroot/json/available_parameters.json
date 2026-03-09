@@ -19,21 +19,21 @@
 			"City",
 			"Town",
 			"Forest",
+			"River",
 			"Desert",
 			"Beach",
-			"Volcano",
 			"Island",
-			"River"
+			"Volcano"
 		],
 		"ImageUrls": [
 			"images/location_city.jpg",
 			"images/location_town.jpg",
 			"images/location_forest.jpg",
+			"images/location_river.jpg",
 			"images/location_desert.jpg",
 			"images/location_beach.jpg",
-			"images/location_volcano.jpg",
 			"images/location_island.jpg",
-			"images/location_river.jpg"
+			"images/location_volcano.jpg"
 		]
 	},
 	{
