@@ -1,12 +1,22 @@
 /* content area of 100% width and height, with flex layout, content top-aligned vertically, 
 left-aligned horizontally, and vertical direction of flex items */
-.page-content {
+.page-content-top,
+.page-content-center {
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+}
+
+.page-content-top {
 	align-items: flex-start;
 	justify-content: flex-start;
+}
+
+.page-content-center {
+	align-items: center;
+	justify-content: center;
+	row-gap: 2rem;
 }
 
 .stack-container {
@@ -18,12 +28,15 @@ left-aligned horizontally, and vertical direction of flex items */
 	padding: 4.5rem 0 0 1.5rem;
 }
 
-.stack-description {
-	position: absolute;
-	margin-top: -3rem;
+.description {
 	font-family: "roboto-medium";
 	font-size: 1.3rem;
 	color: black;
+}
+
+.stack-description {
+	position: absolute;
+	margin-top: -3rem;
 }
 
 .stack-button {

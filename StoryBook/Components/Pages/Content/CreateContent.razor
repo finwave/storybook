@@ -38,7 +38,7 @@
     if (ViewMode == EParamViewMode.Images)
     {
       <div class="stack-container">
-        <div class="stack-description">@selectDescription</div>
+        <div class="description stack-description">@selectDescription</div>
         <StoryParameterSectionImages SectionId=@sectionId ParameterNames=@parameterNames ImageUrls=@imageUrls
                                      IsMultiSelection=@isMultiSelection />
       </div>
@@ -46,7 +46,7 @@
     else if (ViewMode == EParamViewMode.Buttons)
     {
       <div class="stack-container">
-        <div class="stack-description">@selectDescription</div>
+        <div class="description stack-description">@selectDescription</div>
         <StoryParameterSectionButtons SectionId=@sectionId ParameterNames=@parameterNames
                                       IsMultiSelection=@isMultiSelection />
       </div>
@@ -60,23 +60,23 @@
     // first parameter type
     if ((int)ParameterType == 0)
     {
-      <Button class="button-medium footer-button-right" Color="Color.Primary"
+      <Button class="button-medium footer-button footer-button-right" Color="Color.Primary"
               @onclick="OnNext">@LocaleCommon["Next"]</Button>
     }
     // last parameter type
     else if ((int)ParameterType == (int)EStoryParamType.MaxCount - 1)
     {
-      <Button class="button-medium footer-button-left" Color="Color.Primary"
+      <Button class="button-medium footer-button footer-button-left" Color="Color.Primary"
               @onclick="OnPrevious">@LocaleCommon["Previous"]</Button>
-      <Button class="button-bold footer-button-right" Color="Color.Success"
+      <Button class="button-bold footer-button footer-button-right" Color="Color.Success"
               @onclick="OnCreate">@LocaleCommon["Create"].ToString().ToUpper()</Button>
     }
     // any other parameter type
     else
     {
-      <Button class="button-medium footer-button-left" Color="Color.Primary"
+      <Button class="button-medium footer-button footer-button-left" Color="Color.Primary"
               @onclick="OnPrevious">@LocaleCommon["Previous"]</Button>
-      <Button class="button-medium footer-button-right" Color="Color.Primary"
+      <Button class="button-medium footer-button footer-button-right" Color="Color.Primary"
               @onclick="OnNext">@LocaleCommon["Next"]</Button>
     }
   }
