@@ -65,6 +65,8 @@
 
 .side-element {
 	height: 4rem;
+	line-height: 4rem;
+	text-align: center;
 }
 
 .side-title {
