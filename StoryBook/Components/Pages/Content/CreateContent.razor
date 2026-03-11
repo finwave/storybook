@@ -14,7 +14,7 @@
       continue;
     }
 
-    if (parameterSection.ParameterType != ParameterType)
+    if (parameterSection.ParameterType != _parameterType)
     {
       continue;
     }
@@ -35,7 +35,7 @@
     List<string> parameterNames = parameterSection.Parameters;
     List<string> imageUrls = parameterSection.ImageUrls;
 
-    if (ViewMode == EParamViewMode.Images)
+    if (_viewMode == EParamViewMode.Images)
     {
       <div class="stack-container">
         <div class="description">@selectDescription</div>
@@ -43,7 +43,7 @@
                                      IsMultiSelection=@isMultiSelection />
       </div>
     }
-    else if (ViewMode == EParamViewMode.Buttons)
+    else if (_viewMode == EParamViewMode.Buttons)
     {
       <div class="stack-container">
         <div class="description">@selectDescription</div>
@@ -58,13 +58,13 @@
 <div class="footer-area">
   @{
     // first parameter type
-    if ((int)ParameterType == 0)
+    if ((int)_parameterType == 0)
     {
       <Button class="button-medium footer-button footer-button-right" Color="Color.Primary"
               @onclick="OnNext">@LocaleCommon["Next"]</Button>
     }
     // last parameter type
-    else if ((int)ParameterType == (int)EStoryParamType.MaxCount - 1)
+    else if ((int)_parameterType == (int)EStoryParamType.MaxCount - 1)
     {
       <Button class="button-medium footer-button footer-button-left" Color="Color.Primary"
               @onclick="OnPrevious">@LocaleCommon["Previous"]</Button>
@@ -83,14 +83,12 @@
 </div>
 
 @code {
-  [Parameter]
-  public EParamViewMode ViewMode { get; set; }
-  [Parameter]
-  public EStoryParamType ParameterType { get; set; }
+  private EParamViewMode _viewMode = EParamViewMode.Images;
+  private EStoryParamType _parameterType = EStoryParamType.Theme;
 
   private void OnPrevious()
   {
-    int parameterTypeValue = (int)ParameterType;
+    int parameterTypeValue = (int)_parameterType;
     parameterTypeValue--;
 
     if (parameterTypeValue < 0)
@@ -98,12 +96,13 @@
       parameterTypeValue = (int)EStoryParamType.MaxCount - 1;
     }
 
-    Navigation.NavigateTo($"/Create?param_type={parameterTypeValue}");
+    _parameterType = (EStoryParamType)parameterTypeValue;
+    StateHasChanged();
   }
 
   private void OnNext()
   {
-    int parameterTypeValue = (int)ParameterType;
+    int parameterTypeValue = (int)_parameterType;
     parameterTypeValue++;
 
     if (parameterTypeValue >= (int)EStoryParamType.MaxCount)
@@ -111,7 +110,8 @@
       parameterTypeValue = 0;
     }
 
-    Navigation.NavigateTo($"/Create?param_type={parameterTypeValue}");
+    _parameterType = (EStoryParamType)parameterTypeValue;
+    StateHasChanged();
   }
 
   private void OnCreate()
