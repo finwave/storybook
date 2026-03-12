@@ -10,6 +10,17 @@ builder.Services.AddBootstrapBlazor();
 builder.Services.AddLocalization();
 builder.Services.AddControllers();
 
+// Register OpenAI service as singleton
+builder.Services.AddSingleton<AIService>();
+
+// Add IHttpClientFactory to the container and set the name of the factory
+// to "StoryBookAPI". The base address for API requests is also set.
+var serverUri = builder.Configuration["ServerUri"] ?? throw new InvalidOperationException("ServerUri is not set");
+builder.Services.AddHttpClient("StoryBookAPI", httpClient =>
+{
+  httpClient.BaseAddress = new Uri(serverUri);
+});
+
 var app = builder.Build();
 
 string[] supportedCultures = ["en-US", "fi-FI"];
