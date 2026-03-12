@@ -12,6 +12,9 @@ left-aligned horizontally, and vertical direction of flex items */
 .page-content-center {
 	align-items: center;
 	justify-content: center;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	text-align: center;
 }
 
 .page-content-top {
