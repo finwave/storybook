@@ -12,3 +12,11 @@
     </Main>
   </Layout>
 </div>
+
+@code {
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
+    StoryGenerateManager.Reset();
+  }
+}
