@@ -10,27 +10,27 @@ public class StoryGenerateManager
     Finished
   }
 
-  private static EState m_CurrentState;
-  private static string m_GeneratedText = string.Empty;
+  private static EState s_CurrentState;
+  private static string s_GeneratedText = string.Empty;
 
   public static bool IsValidState
   {
-    get { return m_CurrentState != EState.Invalid; }
+    get { return s_CurrentState != EState.Invalid; }
   }
 
   public static bool IsStarting
   {
-    get { return m_CurrentState == EState.Starting; }
+    get { return s_CurrentState == EState.Starting; }
   }
 
   public static bool IsGenerating
   {
-    get { return m_CurrentState == EState.Generating; }
+    get { return s_CurrentState == EState.Generating; }
   }
 
   public static bool IsFinished
   {
-    get { return m_CurrentState == EState.Finished; }
+    get { return s_CurrentState == EState.Finished; }
   }
 
   public static void Reset()
@@ -50,7 +50,7 @@ public class StoryGenerateManager
 
   public static void SetStoryText(string text)
   {
-    m_GeneratedText = text;
+    s_GeneratedText = text;
   }
 
   public static void SetStoryImages()
@@ -63,7 +63,7 @@ public class StoryGenerateManager
 
   public static string GetStoryText()
   {
-    return m_GeneratedText;
+    return s_GeneratedText;
   }
 
   public static void Finish()
@@ -81,12 +81,12 @@ public class StoryGenerateManager
         break;
     }
 
-    m_CurrentState = nextState;
+    s_CurrentState = nextState;
   }
 
   private static void ClearResults()
   {
-    m_GeneratedText = string.Empty;
+    s_GeneratedText = string.Empty;
   }
 
   private static void SaveStory()
