@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="BootstrapBlazor" Version="9.7.3" />
     <PackageReference Include="BootstrapBlazor.BootstrapIcon" Version="9.0.2" />
+    <PackageReference Include="OpenAI" Version="2.9.1" />
   </ItemGroup>
 
 </Project>
