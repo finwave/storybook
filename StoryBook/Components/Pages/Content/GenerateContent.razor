@@ -1,5 +1,52 @@
-﻿@rendermode InteractiveServer
+﻿@namespace StoryBook.Scripts
+
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+@inject IStringLocalizer<Common> LocaleCommon
+@inject IJSRuntime JS
+
+@{
+  // Error has occured while generating.
+  if (StoryGenerateManager.IsGenerating && (statusCode != System.Net.HttpStatusCode.OK))
+  {
+    string errorMessageLine1 = "An error has occured";
+    string errorMessageLine2 = "You can try and create another story";
+
+    <div class="description">
+      <div>@errorMessageLine1</div>
+      <div>@errorMessageLine2</div>
+    </div>
+
+    <Button class="button-bold footer-button" Color="Color.Success"
+            @onclick="OnCreate">@LocaleCommon["CreateNew"].ToString().ToUpper()</Button>
+  }
+  else
+  {
+    <div class="description">@description</div>
+  }
+}
 
 @code {
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
 
+    if (!StoryGenerateManager.IsValidState)
+    {
+      StoryParameterManager.Initialize();
+      Navigation.NavigateTo("/Create");
+    }
+  }
+
+  private void OnCreate()
+  {
+    StoryParameterManager.Initialize();
+    Navigation.NavigateTo("/Create");
+  }
+
+  private async Task OnDebugMessage(string message)
+  {
+    // Show the message on browser console window.
+    await JS.InvokeVoidAsync("console.log", message);
+  }
 }
