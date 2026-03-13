@@ -48,6 +48,12 @@ public class StoryGenerateManager
     SwitchState(EState.Generating);
   }
 
+  public static void Finish()
+  {
+    SaveStory();
+    SwitchState(EState.Finished);
+  }
+
   public static void SetStoryText(string text)
   {
     s_GeneratedText = text;
@@ -64,12 +70,6 @@ public class StoryGenerateManager
   public static string GetStoryText()
   {
     return s_GeneratedText;
-  }
-
-  public static void Finish()
-  {
-    SaveStory();
-    SwitchState(EState.Finished);
   }
 
   private static void SwitchState(EState nextState)
