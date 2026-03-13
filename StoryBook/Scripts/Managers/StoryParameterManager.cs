@@ -213,6 +213,7 @@ public class StoryParameterManager
       data.SectionName = templateSectionName;
     }
 
+    data.Init();
     s_ListSelectedParameters.Add(data);
   }
 
