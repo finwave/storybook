@@ -3,6 +3,8 @@
 @rendermode InteractiveServer
 @inject NavigationManager Navigation
 @inject IStringLocalizer<Common> LocaleCommon
+@inject IStringLocalizer<Generate> LocaleGenerate
+@inject IStringLocalizer<Parameters> LocaleParameters
 @inject IJSRuntime JS
 
 @{
@@ -36,6 +38,11 @@
       StoryParameterManager.Initialize();
       Navigation.NavigateTo("/Create");
     }
+  }
+
+  private void OnBrowse()
+  {
+    Navigation.NavigateTo("/");
   }
 
   private void OnCreate()
