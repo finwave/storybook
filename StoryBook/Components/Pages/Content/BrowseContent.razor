@@ -3,9 +3,26 @@
 @inject IStringLocalizer<Common> LocaleCommon
 
 @{
-  <div class="description">@LocaleCommon["BrowseEmpty"]</div>
-  <Button class="button-bold footer-button" Color="Color.Success"
-          @onclick="OnCreate">@LocaleCommon["CreateNew"].ToString().ToUpper()</Button>
+  string storyText = StoryGenerateManager.GetStoryText();
+
+  if (storyText != string.Empty)
+  {
+    <div class="page-content-story">
+      <pre>
+        <div class="story-text">
+          @storyText
+        </div>
+      </pre>
+    </div>
+  }
+  else
+  {
+    <div class="page-content-center">
+      <div class="description">@LocaleCommon["BrowseEmpty"]</div>
+      <Button class="button-bold footer-button" Color="Color.Success"
+              @onclick="OnCreate">@LocaleCommon["CreateNew"].ToString().ToUpper()</Button>
+    </div>
+  }
 }
 
 @code {
