@@ -43,7 +43,7 @@ namespace StoryBook.Locales
       {
         if (object.ReferenceEquals(resourceMan, null))
         {
-          global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Parameters", typeof(Parameters).Assembly);
+          global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("StoryBook.Locales.Parameters", typeof(Parameters).Assembly);
           resourceMan = temp;
         }
         return resourceMan;
@@ -295,6 +295,17 @@ namespace StoryBook.Locales
       get
       {
         return ResourceManager.GetString("Eagle", resourceCulture);
+      }
+    }
+
+    /// <summary>
+    ///   Looks up a localized string similar to Spooky.
+    /// </summary>
+    public static string Spooky
+    {
+      get
+      {
+        return ResourceManager.GetString("Spooky", resourceCulture);
       }
     }
   }

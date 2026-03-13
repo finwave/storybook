@@ -74,14 +74,14 @@ left-aligned horizontally, and vertical direction of flex items */
 }
 
 .stack-caption-large {
-	width: 20rem;
+	width: 17.5rem;
 	font-size: 1.15rem;
 }
 
 .stack-image-large {
 	border: 0.25rem solid;
-	width: 20rem;
-	height: calc(1.5 * 20rem);
+	width: 17.5rem;
+	height: calc(1.5 * 17.5rem);
 	margin-right: 1.5rem;
 }
 

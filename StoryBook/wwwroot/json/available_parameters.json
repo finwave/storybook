@@ -3,12 +3,13 @@
 		"SectionName": "THEME",
 		"SectionId": 1,
 		"IsMultiSelection": false,
-		"Parameters": ["Adventure", "Comedy", "Fantasy", "Mystery"],
+		"Parameters": ["Adventure", "Comedy", "Fantasy", "Mystery", "Spooky"],
 		"ImageUrls": [
 			"images/theme_adventure.jpg",
 			"images/theme_comedy.jpg",
 			"images/theme_fantasy.jpg",
-			"images/theme_mystery.jpg"
+			"images/theme_mystery.jpg",
+			"images/theme_spooky.jpg"
 		]
 	},
 	{

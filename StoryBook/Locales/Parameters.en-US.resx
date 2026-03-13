@@ -180,4 +180,7 @@
   <data name="Eagle" xml:space="preserve">
     <value>Eagle</value>
   </data>
+  <data name="Spooky" xml:space="preserve">
+    <value>Spooky</value>
+  </data>
 </root>
