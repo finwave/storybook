@@ -53,9 +53,8 @@ body {
 	box-sizing: border-box !important;
 }
 
-.divider-mask {
-	width: 0.1em !important;
-	background-color: rgb(144, 144, 144) !important;
+pre {
+	white-space: pre-wrap;
 }
 
 .content {
@@ -148,7 +147,7 @@ h1:focus {
 
 .layout-main {
 	padding: 0 !important;
-	background-color: rgb(230, 230, 230);
+	background-color: rgb(225, 225, 225);
 }
 
 .btn.stack-button.caption,
